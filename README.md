@@ -29,6 +29,7 @@ Via Homebrew:
 - `zsh-completions`
 - `zsh-syntax-highlighting`
 - `powerlevel10k`
+- `font-meslo-lg-nerd-font`
 
 ## Install
 
@@ -87,6 +88,18 @@ To disable theme loading:
 ```bash
 export TERM_ENV_DISABLE_THEME=1
 ```
+
+## Font note
+
+Powerlevel10k prompt icons require a Nerd Font. This repo installs:
+
+- `MesloLGS Nerd Font`
+
+In iTerm2, set your profile font to:
+
+- `MesloLGS NF`
+
+If the prompt shows unresolved glyphs or weird boxes, the shell config is probably fine and the terminal font is the problem.
 
 ## Notes
 
