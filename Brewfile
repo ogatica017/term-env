@@ -1,0 +1,8 @@
+brew "diff-so-fancy"
+brew "fzf"
+brew "ripgrep"
+brew "tree"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+brew "powerlevel10k"
