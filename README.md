@@ -40,13 +40,26 @@ cd ~/term-env
 
 ## Safety model
 
-Before replacing any managed dotfiles, `setup.sh` backs up existing files into a timestamped folder under:
+`setup.sh` installs packages and symlinks managed dotfiles into your home directory.
+
+Before replacing any managed dotfiles, it snapshots existing shell files into a timestamped folder under:
 
 ```bash
 ~/.term-env-backups/
 ```
 
-Managed files are then symlinked into `$HOME`.
+Backed up if present:
+- `~/.zshrc`
+- `~/.zprofile`
+- `~/.zshenv`
+- `~/.p10k.zsh`
+
+Managed by symlink:
+- `~/.zshrc`
+- `~/.zprofile`
+- `~/.p10k.zsh` if you do not already have one
+
+`~/.zshenv` is backed up defensively but is not managed by v1.
 
 ## Private / machine-specific config
 

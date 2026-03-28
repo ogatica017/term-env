@@ -19,13 +19,27 @@ SNAPSHOT_FILES=(
   "$HOME/.p10k.zsh"
 )
 
+BACKED_UP_FILES=()
+
 backup_file() {
   local target="$1"
   if [[ -e "$target" || -L "$target" ]]; then
     mkdir -p "$BACKUP_DIR"
     cp -a "$target" "$BACKUP_DIR/"
+    BACKED_UP_FILES+=("$target")
     echo "Backed up $target -> $BACKUP_DIR"
   fi
+}
+
+was_backed_up() {
+  local target="$1"
+  local backed
+  for backed in "${BACKED_UP_FILES[@]}"; do
+    if [[ "$backed" == "$target" ]]; then
+      return 0
+    fi
+  done
+  return 1
 }
 
 snapshot_existing_dotfiles() {
@@ -58,8 +72,10 @@ link_file() {
   fi
 
   if [[ -e "$target" || -L "$target" ]]; then
-    backup_file "$target"
-    rm -rf "$target"
+    if ! was_backed_up "$target"; then
+      backup_file "$target"
+    fi
+    rm -f "$target"
   fi
 
   ln -s "$source" "$target"
