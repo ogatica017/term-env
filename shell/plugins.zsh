@@ -8,7 +8,17 @@ else
   BREW_PREFIX=""
 fi
 
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:---height 40% --layout=reverse --border}"
+
 if [[ -n "$BREW_PREFIX" ]]; then
+  if [[ -f "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]]; then
+    source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+  fi
+
+  if [[ -f "$BREW_PREFIX/opt/fzf/shell/completion.zsh" ]]; then
+    source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
+  fi
+
   if [[ -d "$BREW_PREFIX/share/zsh-completions" ]]; then
     fpath=("$BREW_PREFIX/share/zsh-completions" $fpath)
   fi
